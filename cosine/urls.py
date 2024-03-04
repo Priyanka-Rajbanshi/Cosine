@@ -10,8 +10,8 @@ urlpatterns = [
     path('recruitment.html', views.recruitment, name='recruitment.html'),
     path('results.html', views.results, name='results.html'),
     path('signup.html', views.signup, name='signup'),
-    path('jobcard.html', views.signup, name='jobcard'),
-
+    path('jobcard.html', views.jobcard, name='jobcard'),
+    path('findee.html', views.findee, name='findee'),
 
 
 ]

@@ -69,20 +69,32 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
 </style>
-<h2>Job post</h2>
+<!-- <h2>Job post</h2>
     {% if error_message %}
     <p style="color: red;">{{ error_message }}</p>
 {% endif %}
         <form class="formsd"method="post" enctype="multipart/form-data" >
             {% csrf_token %}
-            <!-- {{ form.as_p }} -->
+            {{ form.as_p }}
             <label for="job_title">Job Title:</label>
             <input type="text" id="job_title" name="job_title" required><br><br>
             <label for="docx_file">Upload DOCX File:</label>
             <input type="file" id="docx_file" name="docx_file" accept=".docx" required><br><br>
-            <button type="submit" name="action" value="add">Post Job</button>
+            <button type="submit">Post Job</button>
             <button type="submit" name="action" value="find">Find Candidate</button>
-        </form>    
+        </form>     -->
+
+        <form class="formsd" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.jobtitle.label_tag }}
+            {{ form.jobtitle }}
+            <br><br>
+            {{ form.jobfile.label_tag }}
+            {{ form.jobfile }}
+            <br><br>
+            <button type="submit" name="action" value="add">Post Job</button>
+            <button type="submit" formaction="{% url 'findee' %}">Find Candidate</button>
+        </form>
 
 </body>
 
