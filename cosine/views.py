@@ -62,29 +62,6 @@ def recruitment(request):
     return render(request, 'recruitment.html', {'form': form})
 
 
-#nextttt one
-def recruitment(request):
-    if request.method == 'POST':
-        form = JobDetailsForm(request.POST, request.FILES)
-        try:
-            if form.is_valid():
-                jobdetails = form.save(commit=False)
-                try:
-                    jobdetails.id = HRInfo.objects.get(username=request.POST['username'])
-                    jobdetails.save()
-                    print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobdesc, jobdetails.hr_info.username)
-                    return redirect('jobcard.html')  # Redirect to the home page after saving
-                except ObjectDoesNotExist:
-                    form.add_error('username', 'Username does not exist.')
-                    print('Error: Username does not exist.')
-        except Exception as e:
-            form.add_error(None, f"An error occurred: {e}")
-            print('Error saving values to database:', e)
-    else:
-        form = JobDetailsForm()
-    return render(request, 'recruitment.html', {'form': form})
-
-
 def signup(request):
     if request.method == 'POST':
         try:
