@@ -37,8 +37,6 @@ def findee(request):
     return render(request, 'findee.html')
 
 
-<<<<<<< HEAD
-=======
 def results(request):
     return render(request, 'results.html')
 
@@ -65,7 +63,6 @@ def recruitment(request):
 
 
 #nextttt one
->>>>>>> fe661cd (f-commit)
 def recruitment(request):
     if request.method == 'POST':
         form = JobDetailsForm(request.POST, request.FILES)
