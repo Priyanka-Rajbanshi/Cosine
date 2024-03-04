@@ -36,123 +36,31 @@ def jobcard(request):
 def findee(request):
     return render(request, 'findee.html')
 
-# def recruitment(request):
-#     if request.method == 'POST':
-#         form = JobDetailsForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             jobdetails = form.save(commit=False)
-#             jobdetails.id = HRInfo.objects.get(username=request.POST['username'])
-#             jobdetails.save()
-#             return redirect('home.html')  # Redirect to the home page after saving
-#     else:
-#         form = JobDetailsForm()
-#     return render(request, 'recruitment.html', {'form': form})
 
-# def results(request):
-#     return render(request, 'results.html')
+def results(request):
+    return render(request, 'results.html')
 
-# def recruitment(request):
-#     if request.method == 'POST':
-#         form = JobDetailsForm(request.POST, request.FILES)
-#         try:
-#             if form.is_valid():
-#                 jobdetails = form.save(commit=False)
-#                 try:
-#                     jobdetails.id = HRInfo.objects.get(username=request.POST['username'])
-#                     jobdetails.save()
-#                     print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobdesc, jobdetails.hr_info.username)
-#                     return redirect('jobcard.html')  # Redirect to the home page after saving
-#                 except ObjectDoesNotExist:
-#                     form.add_error('username', 'Username does not exist.')
-#                     print('Error: Username does not exist.')
-#         except Exception as e:
-#             form.add_error(None, f"An error occurred: {e}")
-#             print('Error saving values to database:', e)
-#     else:
-#         form = JobDetailsForm()
-#     return render(request, 'recruitment.html', {'form': form})
+def recruitment(request):
+    if request.method == 'POST':
+        form = JobDetailsForm(request.POST, request.FILES)
+        try:
+            if form.is_valid():
+                jobdetails = form.save(commit=False)
+                try:
+                    jobdetails.id = HRInfo.objects.get(username=request.POST['username'])
+                    jobdetails.save()
+                    print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobdesc, jobdetails.hr_info.username)
+                    return redirect('jobcard.html')  # Redirect to the home page after saving
+                except ObjectDoesNotExist:
+                    form.add_error('username', 'Username does not exist.')
+                    print('Error: Username does not exist.')
+        except Exception as e:
+            form.add_error(None, f"An error occurred: {e}")
+            print('Error saving values to database:', e)
+    else:
+        form = JobDetailsForm()
+    return render(request, 'recruitment.html', {'form': form})
 
-# def recruitment(request):
-#     error_message = None
-#     if request.method == 'POST':
-#         form = JobDetailsForm(request.POST, request.FILES)
-#         try:
-#             if form.is_valid():
-#                 jobdetails = form.save(commit=False)
-#                 try:
-#                     jobdetails.id = HRInfo.objects.get(username=request.POST['username'])
-#                     jobdetails.save()
-#                     print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobfile, jobdetails.hr_info.username)
-#                     return redirect('jobcard.html')  # Redirect to the jobcard page after saving
-#                 except ObjectDoesNotExist:
-#                     form.add_error('username', 'Username does not exist.')
-#                     error_message = 'Username does not exist.'
-#         except Exception as e:
-#             form.add_error(None, f"An error occurred: {e}")
-#             error_message = f"An error occurred: {e}"
-#     else:
-#         form = JobDetailsForm()
-#     return render(request, 'recruitment.html', {'form': form, 'error_message': error_message})
-
-# def recruitment(request):
-#     error_message = None
-#     if request.method == 'POST':
-#         form = JobDetailsForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             try:
-#                 jobdetails = form.save()
-#                 print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobfile, jobdetails.hr_info.username)
-#                 messages.success(request, 'Job posted successfully!')
-#                 return redirect('jobcard.html')  # Redirect to the jobcard page after saving
-#             except Exception as e:
-#                 form.add_error(None, f"An error occurred: {e}")
-#                 error_message = f"An error occurred: {e}"
-#                 messages.error(request, 'Failed to post job.')
-
-#     else:
-#         form = JobDetailsForm()
-#     return render(request, 'recruitment.html', {'form': form, 'error_message': error_message})
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import JobDetailsForm
-
-# def recruitment(request):
-#     print("hiiiiiiiii;;;;;;;;;;;;;")
-#     error_message = None
-#     print("hiiiiiiiii2222222222222")
-
-#     if request.method == 'POST':
-#         print("hi;333333333;;;;;;;")
-#         form = JobDetailsForm(request.POST, request.FILES)
-#         print("hi;444444444;;;;;;;")
-
-#         if form.is_valid():
-#             print("hi555555555;;;;;;;")
-#             try:
-#                 print("hi;;;;66666666666;;;;;")
-#                 # jobdetails=JobDetailsForm(jobtitle=jobtitle,jobfile=jobfile)
-#                 # jobdetails = form.save()
-#                 jobdetails = form.save(commit=False)  # Don't save the form to database yet
-#                  # Assuming `hr_info` is a ForeignKey field that should be set to the current user's HRInfo
-#                 print("hi;;;;7777777777777;;;;;")
-#                 hr_info_id = request.user.hrinfo.id
-#                 print("hi;;;;77777777788888;;;;;")
-#                 jobdetails.hr_info_id = hr_info_id
-#                 print("ppppppppppppppp;;;")
-#                 jobdetails.hr_info = request.user.hr_info  # PROBLEM::::Assuming `request.user.hr_info` is the HRInfo object for the current user
-#                 print("hi;;;;888888888;;;;;")
-#                 jobdetails.save()  # Save the JobDetails instance with the HRInfo set
-#                 print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobfile, jobdetails.hr_info.username)
-#                 messages.success(request, 'Job posted successfully!')
-#                 return redirect('jobcard.html')  # Redirect to the jobcard page after saving
-#             except Exception as e:
-#                 form.add_error(None, f"An error occurred: {e}")
-#                 error_message = f"An error occurred: {e}"
-#                 messages.error(request, 'Failed to post job.')
-#     else:
-#         form = JobDetailsForm()
-#     return render(request, 'recruitment.html', {'form': form, 'error_message': error_message})
 
 #nextttt one
 def recruitment(request):
