@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between; /* Align items horizontally */
+            align-items: center; /* Center items vertically */
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .logo {
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+        }
+
+        h1 {
+            margin: 0; /* Remove default margin */
+            flex: 1; /* Allow the h1 to grow and take remaining space */
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .job-description {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-description h2 {
+            color: #333;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #45a049;
+        }
+
+        .submit-button {
+            margin-top: 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+       <script>
+        function handleFileChange() {
+            var fileInput = document.getElementById('resume');
+            var selectedFiles = fileInput.files;
+
+            if (selectedFiles.length > 1) {
+                document.getElementById('file-label').innerText = selectedFiles.length + ' files selected';
+            } else {
+                document.getElementById('file-label').innerText = selectedFiles.length + ' file selected';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhFyuGddr2uJpu6QUyWXX-1uq-2g1qfiru9FureyZx201BsYXyA8fROBiiD17GxEamR0tJ_swRN0F7ZxuyZ9iFcbGoUICP4ANUOmPt9uXi8PFKK9XRmVLNubrbM7oHlJ737RKlQ1Qcm0z41LUva7AVK6BI_lUJNumOsL2YGddYXsXFeMLA9FIpmsstQduk"
+        alt="Logo" class="logo">
+        <h1>Job Application</h1>
+        <button onclick="window.location.href = 'home.html';">Login as Recruiter</button>
+
+    </header>
+
+    <main>
+        <div class="job-description">
+            <h2>Job Title: Software Developer</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet accumsan ex. Nulla facilisi. Donec
+                eu nulla nec turpis iaculis gravida. Sed malesuada justo non risus convallis, a tincidunt arcu
+                tincidunt. Proin nec malesuada nulla.</p>
+                <div class="upload-section">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <label for="resume" class="custom-file-upload">
+                            <input type="file" id="resume" name="resume[]" accept=".pdf,.doc" multiple required
+                                onchange="handleFileChange()">
+                            Choose Files
+                        </label>
+                        <span id="file-label">No file selected</span>
+                        <button type="submit" class="submit-button">Submit Application</button>
+                    </form>
+                </div>
+        </div>
+    </main>
+</body>
+
+</html>

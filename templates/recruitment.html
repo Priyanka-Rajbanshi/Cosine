@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill-Mapping</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 6px;
+            text-align: left;
+        }
+
+        nav {
+            background-color: #ecf0f1;
+            padding: 8px 16px;
+            position: fixed;
+            top: 120px; /* Adjust based on the height you want */
+            left: 0;
+            width: 200px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        main {
+            margin-left: 200px; /* Adjust based on the width of your nav */
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhFyuGddr2uJpu6QUyWXX-1uq-2g1qfiru9FureyZx201BsYXyA8fROBiiD17GxEamR0tJ_swRN0F7ZxuyZ9iFcbGoUICP4ANUOmPt9uXi8PFKK9XRmVLNubrbM7oHlJ737RKlQ1Qcm0z41LUva7AVK6BI_lUJNumOsL2YGddYXsXFeMLA9FIpmsstQduk"
+            alt="Logo" width="100" height="100">
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" class="dashboard-link active"><i class="fas fa-users"></i> Recruitment</a></li>
+            <li><a href="#post-job" class="dashboard-link"><i class="fas fa-file-alt"></i> Post Job</a></li>
+            <li><a href="#projects" class="dashboard-link"><i class="fas fa-tasks"></i> Projects</a></li>
+            <li><a href="#project-allocation" class="dashboard-link"><i class="fas fa-project-diagram"></i> Project Allocation</a></li>
+            <li><a href="#view-candidates" class="dashboard-link"><i class="fas fa-search"></i> View Candidates</a></li>
+            <li><a href="#view-job" class="dashboard-link"><i class="fas fa-eye"></i> View Job</a></li>
+        </ul>
+    </nav>
+
+<style>
+    .formsd{
+        display: inline-block;
+            text-align: left;
+            margin-left: 5cm;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
+</style>
+<h2>Job post</h2>
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+        <form class="formsd"method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <label for="job_title">Job Title:</label>
+            <input type="text" id="job_title" name="job_title" required><br><br>
+            <label for="docx_file">Upload DOCX File:</label>
+            <input type="file" id="docx_file" name="docx_file" accept=".docx" required><br><br>
+            <button type="submit" name="action" value="add">Post Job</button>
+            <button type="submit" name="action" value="find">Find Candidate</button>
+        </form>    
+
+</body>
+
+</html>

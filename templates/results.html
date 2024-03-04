@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #4caf50;
+            margin-top: 20px;
+        }
+
+        a {
+            display: block;
+            margin-top: 30px;
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #0b7dda;
+        }
+    </style>
+    <title>Result</title>
+</head>
+<body>
+    <h1>Similarity Result</h1>
+
+    {% if match_percentage is defined %}
+        <h2>Similarity Score: {{ match_percentage }}%</h2>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}">Go back to the input page</a>
+</body>
+</html>
