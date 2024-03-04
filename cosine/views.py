@@ -62,59 +62,6 @@ def recruitment(request):
     return render(request, 'recruitment.html', {'form': form})
 
 
-#nextttt one
-def recruitment(request):
-    # Initialize error message to None
-    error_message = None
-
-    # Print statement to indicate the start of the view function
-    print("Start of recruitment view")
-
-    if request.method == 'POST':
-        # Print statement to indicate that a POST request is received
-        print("POST request received")
-        
-        # Create a form instance with the POST data and files
-        form = JobDetailsForm(request.POST, request.FILES)
-        
-        # Check if the form is valid
-        if form.is_valid():
-            # Print statement to indicate that the form is valid
-            print("Form is valid")
-            try:
-                # Create an instance of JobDetails but don't save it to the database yet
-                jobdetails = form.save(commit=False)
-                print('1;;;;;;;;;;;;;222')
-                # Get the id of the HRInfo object associated with the current user
-                hr_info_id = request.user.hrinfo.id
-                print('iii;;;;;;;;i')
-                # Set the hr_info_id field of jobdetails
-                jobdetails.hr_info_id = hr_info_id
-                print("id;;;;;;;;;;;;;;;",hr_info_id)
-                # Save the jobdetails instance to the database
-                jobdetails.save()
-                
-                # Print values saved to the database
-                print('Values saved to database:', jobdetails.jobtitle, jobdetails.jobfile, jobdetails.hr_info.username)
-                
-                # Add a success message
-                messages.success(request, 'Job posted successfully!')
-                
-                # Redirect to the jobcard.html page
-                return redirect('jobcard.html')
-            except Exception as e:
-                # If an exception occurs, add the error to the form
-                form.add_error(None, f"An error occurred: {e}")
-                # Set the error message
-                error_message = f"An error occurred: {e}"
-                # Add an error message
-                messages.error(request, 'Failed to post job.')
-    else:
-        # If the request method is not POST, create an empty form
-        form = JobDetailsForm()
-    
-    # Render the recruitment.html template with the form and error_message
-    return render(request, 'recruitment.html', {'form': form, 'error_message': error_message})
 
 
 
