@@ -57,12 +57,6 @@ def recruitment(request):
     else:
         form = JobDetailsForm()
     return render(request, 'recruitment.html', {'form': form})
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> b652de43272de2f2f3dea067030b78fea11e32c6
 
 
 def signup(request):
